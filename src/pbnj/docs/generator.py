@@ -102,8 +102,24 @@ class DocumentationGenerator:
         """Generate measures documentation."""
         template = self._get_template("measures.md.j2")
         
+        # Clean up measures data to handle None values
+        measures = self.metadata.get("measures", [])
+        clean_measures = []
+        for measure in measures:
+            if isinstance(measure, dict):
+                clean_measure = {
+                    "name": measure.get("name") or "Unknown",
+                    "table": measure.get("table") or "Unknown",
+                    "description": measure.get("description") or "",
+                    "expression": measure.get("expression") or "",
+                    "display_folder": measure.get("display_folder") or "",
+                    "format_string": measure.get("format_string") or "",
+                    "data_type": measure.get("data_type") or "Unknown",
+                }
+                clean_measures.append(clean_measure)
+        
         content = template.render(
-            measures=self.metadata.get("measures", []),
+            measures=clean_measures,
         )
         
         # Ensure docs directory exists

@@ -3,9 +3,9 @@
 ## Summary
 - **File**: AdventureWorks.pbix
 - **Size**: 2.07 MB
-- **Tables**: 1
-- **Measures**: 0
-- **Relationships**: 0
+- **Tables**: 9
+- **Measures**: 41
+- **Relationships**: 10
 - **Power Query Queries**: 10
 
 ## Documentation

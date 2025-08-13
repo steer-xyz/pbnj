@@ -8,7 +8,7 @@ This document contains all DAX measures and their formulas from the Power BI dat
 | Measure | Table | Description |
 |---------|-------|-------------|
 {% for measure in measures -%}
-| {{ measure.name | default("Unknown") }} | {{ measure.table | default("Unknown") }} | {{ measure.description | truncate(50) | default("No description") }} |
+| {{ measure.name | default("Unknown") }} | {{ measure.table | default("Unknown") }} | {{ measure.description | default("No description") | truncate(50) }} |
 {% endfor %}
 
 ---

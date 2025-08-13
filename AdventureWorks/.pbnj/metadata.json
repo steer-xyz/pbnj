@@ -1,17 +1,1122 @@
 {
   "file_info": {
     "name": "AdventureWorks.pbix",
-    "path": "/home/johns/pbnj/tests/AdventureWorks.pbix",
+    "path": "tests/AdventureWorks.pbix",
     "size_bytes": 2171598
   },
   "tables": [
     {
-      "error": "Failed to extract tables: 'numpy.ndarray' object has no attribute 'iterrows'"
+      "name": "Calendar Lookup",
+      "type": "Table",
+      "description": "",
+      "hidden": false,
+      "columns": [
+        {
+          "name": "Date",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Day Name",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Start of Week",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Start of Month",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Month Name",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Month Number",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Start of Year",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Year",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Month Short",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Day of Week",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Weekend",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Start of Quarter",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Customer Lookup",
+      "type": "Table",
+      "description": "",
+      "hidden": false,
+      "columns": [
+        {
+          "name": "CustomerKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Prefix",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "FirstName",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "LastName",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "FullName",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "BirthDate",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "MaritalStatus",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Gender",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "EmailAddress",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "AnnualIncome",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "TotalChildren",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "EducationLevel",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Occupation",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "HomeOwner",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "DomainName",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Parent",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Customer Priority",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Income Level",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Education Category",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Birth Year",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Product Categories Lookup",
+      "type": "Table",
+      "description": "",
+      "hidden": false,
+      "columns": [
+        {
+          "name": "ProductCategoryKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "CategoryName",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Product Lookup",
+      "type": "Table",
+      "description": "",
+      "hidden": false,
+      "columns": [
+        {
+          "name": "ProductKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductSubcategoryKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductSKU",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductName",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ModelName",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductDescription",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductColor",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductStyle",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductCost",
+          "data_type": "decimal.Decimal",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductPrice",
+          "data_type": "decimal.Decimal",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "SKU Type",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "DiscountPrice",
+          "data_type": "decimal.Decimal",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "SKU Category",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Product Subcategories Lookup",
+      "type": "Table",
+      "description": "",
+      "hidden": false,
+      "columns": [
+        {
+          "name": "ProductSubcategoryKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "SubcategoryName",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductCategoryKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Returns Data",
+      "type": "Table",
+      "description": "",
+      "hidden": false,
+      "columns": [
+        {
+          "name": "ReturnDate",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "TerritoryKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ReturnQuantity",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Rolling Calendar",
+      "type": "Table",
+      "description": "",
+      "hidden": false,
+      "columns": [
+        {
+          "name": "Date",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Year",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Start of Quarter",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Start of Month",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Sales Data",
+      "type": "Table",
+      "description": "",
+      "hidden": false,
+      "columns": [
+        {
+          "name": "OrderDate",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "StockDate",
+          "data_type": "datetime64[ns]",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "OrderNumber",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "ProductKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "CustomerKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "TerritoryKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "OrderLineItem",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "OrderQuantity",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "QuantityType",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Retail Price",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Revenue",
+          "data_type": "object",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        }
+      ]
+    },
+    {
+      "name": "Territory Lookup",
+      "type": "Table",
+      "description": "",
+      "hidden": false,
+      "columns": [
+        {
+          "name": "SalesTerritoryKey",
+          "data_type": "Int64",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Region",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Country",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        },
+        {
+          "name": "Continent",
+          "data_type": "string",
+          "is_key": false,
+          "is_nullable": true,
+          "description": ""
+        }
+      ]
     }
   ],
-  "relationships": [],
-  "measures": [],
-  "calculated_columns": [],
+  "relationships": [
+    {
+      "from_table": "Sales Data",
+      "from_column": "CustomerKey",
+      "to_table": "Customer Lookup",
+      "to_column": "CustomerKey",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 1
+    },
+    {
+      "from_table": "Sales Data",
+      "from_column": "TerritoryKey",
+      "to_table": "Territory Lookup",
+      "to_column": "SalesTerritoryKey",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 1
+    },
+    {
+      "from_table": "Sales Data",
+      "from_column": "OrderDate",
+      "to_table": "Calendar Lookup",
+      "to_column": "Date",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 1
+    },
+    {
+      "from_table": "Sales Data",
+      "from_column": "ProductKey",
+      "to_table": "Product Lookup",
+      "to_column": "ProductKey",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 1
+    },
+    {
+      "from_table": "Product Subcategories Lookup",
+      "from_column": "ProductCategoryKey",
+      "to_table": "Product Categories Lookup",
+      "to_column": "ProductCategoryKey",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 1
+    },
+    {
+      "from_table": "Product Lookup",
+      "from_column": "ProductSubcategoryKey",
+      "to_table": "Product Subcategories Lookup",
+      "to_column": "ProductSubcategoryKey",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 1
+    },
+    {
+      "from_table": "Sales Data",
+      "from_column": "StockDate",
+      "to_table": "Calendar Lookup",
+      "to_column": "Date",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 0
+    },
+    {
+      "from_table": "Returns Data",
+      "from_column": "ProductKey",
+      "to_table": "Product Lookup",
+      "to_column": "ProductKey",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 1
+    },
+    {
+      "from_table": "Returns Data",
+      "from_column": "ReturnDate",
+      "to_table": "Calendar Lookup",
+      "to_column": "Date",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 1
+    },
+    {
+      "from_table": "Returns Data",
+      "from_column": "TerritoryKey",
+      "to_table": "Territory Lookup",
+      "to_column": "SalesTerritoryKey",
+      "cardinality": "M:1",
+      "cross_filter_direction": "Single",
+      "is_active": 1
+    }
+  ],
+  "measures": [
+    {
+      "name": "Order Quantity",
+      "table": "Measures Table",
+      "expression": "\nSUM(\n    'Sales Data'[OrderQuantity]\n) ",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Quantity Returned",
+      "table": "Measures Table",
+      "expression": "\nSUM(\n    'Returns Data'[ReturnQuantity]\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Average Retail Price",
+      "table": "Measures Table",
+      "expression": "\nAVERAGE(\n    'Product Lookup'[ProductPrice] \n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Total Returns",
+      "table": "Measures Table",
+      "expression": "\nCOUNT(\n    'Returns Data'[ReturnQuantity]\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Total Orders",
+      "table": "Measures Table",
+      "expression": "\nDISTINCTCOUNT(\n    'Sales Data'[OrderNumber]\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Total Customers",
+      "table": "Measures Table",
+      "expression": "\nDISTINCTCOUNT(\n    'Sales Data'[CustomerKey]\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Return Rate",
+      "table": "Measures Table",
+      "expression": "\nDIVIDE(\n    [Quantity Returned],\n    [Quantity Sold],\n    \"No Sales\"\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Quantity Sold",
+      "table": "Measures Table",
+      "expression": "\nSUM(\n    'Sales Data'[OrderQuantity]\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Bulk Orders",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Orders],\n    'Sales Data'[OrderQuantity] > 1\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Weekend Orders",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Orders],\n    'Calendar Lookup'[Weekend] = \"Weekend\"\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Bike Returns",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Returns],\n    'Product Categories Lookup'[CategoryName] = \"Bikes\"\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Bikes Sold",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Quantity Sold],\n    'Product Categories Lookup'[CategoryName] = \"Bikes\"\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Bike Return Rate",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Return Rate],\n    'Product Categories Lookup'[CategoryName] = \"Bikes\"\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "All Orders",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Orders],\n    ALL(\n        'Sales Data'\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "% of All Orders",
+      "table": "Measures Table",
+      "expression": "\nDIVIDE(\n    [Total Orders],\n    [All Orders]\n)\n",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Overall Average Price",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Average Retail Price],\n    ALL(\n        'Product Lookup'\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "All Returns",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Returns],\n    ALL(\n        'Returns Data'\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "% of All Returns",
+      "table": "Measures Table",
+      "expression": "\nDIVIDE(\n    [Total Returns],\n    [All Returns]\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "High Ticket Orders",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Orders],\n    FILTER(\n        'Product Lookup','Product Lookup'[ProductPrice] > [Overall Average Price]\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Total Revenue",
+      "table": "Measures Table",
+      "expression": "\nSUMX(\n    'Sales Data',\n    'Sales Data'[OrderQuantity]\n    *\n    RELATED(\n        'Product Lookup'[ProductPrice]\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Total Cost",
+      "table": "Measures Table",
+      "expression": "\nSUMX(\n    'Sales Data',\n    'Sales Data'[OrderQuantity] *\n    RELATED(\n        'Product Lookup'[ProductCost]\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Total Profit",
+      "table": "Measures Table",
+      "expression": "\n[Total Revenue]-[Total Cost]",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "YTD Revenue",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Revenue],\n    DATESYTD(\n        'Calendar Lookup'[Date]\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Previous Month Revenue",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Revenue],\n    DATEADD(\n        'Calendar Lookup'[Date],\n        -1,\n        MONTH\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Revenue Target",
+      "table": "Measures Table",
+      "expression": "\n[Previous Month Revenue] * 1.1",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "10-Day Rolling Revenue",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Revenue],\n    DATESINPERIOD(\n        'Calendar Lookup'[Date],\n        MAX(\n            'Calendar Lookup'[Date]\n        ),\n        -10,\n        DAY\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Previous Month Orders",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Orders],\n    DATEADD(\n        'Calendar Lookup'[Date],\n        -1,\n        MONTH\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "90-Day Rolling Profit",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Profit],\n    DATESINPERIOD(\n        'Calendar Lookup'[Date],\n        LASTDATE(\n            'Calendar Lookup'[Date]\n        ),\n        -90,\n        DAY\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Order Target",
+      "table": "Measures Table",
+      "expression": "\n[Previous Month Orders] * 1.1",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Revenue Per Customer",
+      "table": "Measures Table",
+      "expression": "\nDIVIDE(\n    [Total Revenue],\n    [Total Customers]\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Previous Month Returns",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Returns],\n    DATEADD(\n        'Calendar Lookup'[Date],\n        -1,\n        MONTH\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Profit Target",
+      "table": "Measures Table",
+      "expression": "\n[Previous Month Profit] * 1.1",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Previous Month Profit",
+      "table": "Measures Table",
+      "expression": "\nCALCULATE(\n    [Total Profit],\n    DATEADD(\n        'Calendar Lookup'[Date],\n        -1,\n        MONTH\n    )\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Order Target Gap",
+      "table": "Measures Table",
+      "expression": "[Total Orders] - [Order Target]",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Profit Target Gap",
+      "table": "Measures Table",
+      "expression": "[Total Profit] - [Profit Target]",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Revenue Target Gap",
+      "table": "Measures Table",
+      "expression": "[Total Revenue] - [Revenue Target]",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Parameter Value",
+      "table": "Parameter",
+      "expression": "SELECTEDVALUE('Parameter'[Parameter])",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Price Adjustment Percentage Value",
+      "table": "Price Adjustment Percentage",
+      "expression": "SELECTEDVALUE('Price Adjustment Percentage'[Price Adjustment Percentage], 0)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Adjusted Price",
+      "table": "Measures Table",
+      "expression": "\n[Average Retail Price] * (1 + 'Price Adjustment Percentage'[Price Adjustment Percentage Value])",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Adjusted Revenue",
+      "table": "Measures Table",
+      "expression": "\nSUMX(\n    'Sales Data',\n    'Sales Data'[OrderQuantity]\n    *\n    [Adjusted Price]\n)",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    },
+    {
+      "name": "Adjusted Profit",
+      "table": "Measures Table",
+      "expression": "\n[Adjusted Revenue]-[Total Cost]",
+      "description": null,
+      "display_folder": null,
+      "format_string": ""
+    }
+  ],
+  "calculated_columns": [
+    {
+      "name": "QuantityType",
+      "table": "Sales Data",
+      "expression": "\nIF(\n    'Sales Data'[OrderQuantity] > 1, \n    \"Multiple Items\", \n    \"Single Item\"\n)",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Parent",
+      "table": "Customer Lookup",
+      "expression": "\nIF(\n    'Customer Lookup'[TotalChildren]>0, \n    \"Yes\", \n    \"No\"\n)",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Customer Priority",
+      "table": "Customer Lookup",
+      "expression": "\nIF(\n    AND(\n        'Customer Lookup'[TotalChildren] > 0,\n        'Customer Lookup'[AnnualIncome] > 100000\n    ),\n    \"Priority\",\n    \"Standard\"\n)",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Income Level",
+      "table": "Customer Lookup",
+      "expression": "\nIF('Customer Lookup'[AnnualIncome] >= 150000, \"Very High\",\nIF('Customer Lookup'[AnnualIncome] > 100000, \"High\",\nIF('Customer Lookup'[AnnualIncome] > 50000, \"Average\",\n\"Low\")))",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Education Category",
+      "table": "Customer Lookup",
+      "expression": "\nSWITCH('Customer Lookup'[EducationLevel],\n\"High School\", \"High School\",\n\"Partial High School\", \"High School\",\n\"Bachelors\", \"Undergrad\",\n\"Partial College\", \"Undergrad\",\n\"Graduate Degree\", \"Graduate\")",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Month Short",
+      "table": "Calendar Lookup",
+      "expression": "\nUPPER(\n    LEFT(\n        'Calendar Lookup'[Month Name],\n        3\n    )\n)",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "SKU Category",
+      "table": "Product Lookup",
+      "expression": "\nLEFT(\n    'Product Lookup'[ProductSKU],\n    SEARCH(\n        \"-\",\n        'Product Lookup'[ProductSKU]\n    )\n    -1\n)",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Day of Week",
+      "table": "Calendar Lookup",
+      "expression": "\nWEEKDAY(\n    'Calendar Lookup'[Date],\n    2\n)",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Weekend",
+      "table": "Calendar Lookup",
+      "expression": "\nIF(\n    'Calendar Lookup'[Day of Week] IN {6, 7},\n    \"Weekend\",\n    \"Weekday\"\n)",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Birth Year",
+      "table": "Customer Lookup",
+      "expression": "\nYEAR('Customer Lookup'[BirthDate])",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Retail Price",
+      "table": "Sales Data",
+      "expression": "\nRELATED(\n    'Product Lookup'[ProductPrice]\n)",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Revenue",
+      "table": "Sales Data",
+      "expression": "\n'Sales Data'[Retail Price] * 'Sales Data'[OrderQuantity]",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    },
+    {
+      "name": "Start of Quarter",
+      "table": "Calendar Lookup",
+      "expression": "STARTOFQUARTER('Calendar Lookup'[Date])",
+      "description": "",
+      "data_type": "",
+      "display_folder": ""
+    }
+  ],
   "power_query": {
     "queries": [
       {

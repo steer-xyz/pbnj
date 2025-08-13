@@ -49,22 +49,46 @@ class PBIXParser:
     def _extract_tables(self, model: PBIXRay) -> List[Dict[str, Any]]:
         """Extract table information."""
         try:
-            tables_df = model.tables
+            # Get table names from the tables property (numpy array)
+            table_names = model.tables
             tables = []
             
-            for _, table in tables_df.iterrows():
+            # Get schema DataFrame for column information
+            schema_df = model.schema
+            
+            for table_name in table_names:
+                # Get columns for this table from schema
+                table_columns = schema_df[schema_df['TableName'] == table_name]
+                
                 table_info = {
-                    "name": table.get("Name", ""),
-                    "type": table.get("Type", ""),
-                    "description": table.get("Description", ""),
-                    "hidden": table.get("IsHidden", False),
-                    "columns": self._extract_table_columns(model, table.get("Name", "")),
+                    "name": table_name,
+                    "type": "Table",  # Default type
+                    "description": "",  # Not available in current schema
+                    "hidden": False,  # Not available in current schema
+                    "columns": self._extract_table_columns_from_schema(table_columns),
                 }
                 tables.append(table_info)
             
             return tables
         except Exception as e:
             return [{"error": f"Failed to extract tables: {str(e)}"}]
+    
+    def _extract_table_columns_from_schema(self, table_columns_df) -> List[Dict[str, Any]]:
+        """Extract column information from schema DataFrame."""
+        try:
+            columns = []
+            for _, column in table_columns_df.iterrows():
+                column_info = {
+                    "name": column.get("ColumnName", ""),
+                    "data_type": column.get("PandasDataType", ""),
+                    "is_key": False,  # Not available in current schema
+                    "is_nullable": True,  # Not available in current schema
+                    "description": "",  # Not available in current schema
+                }
+                columns.append(column_info)
+            return columns
+        except Exception:
+            return []
     
     def _extract_table_columns(self, model: PBIXRay, table_name: str) -> List[Dict[str, Any]]:
         """Extract column information for a specific table."""
@@ -80,9 +104,21 @@ class PBIXParser:
     def _extract_relationships(self, model: PBIXRay) -> List[Dict[str, Any]]:
         """Extract relationship information."""
         try:
-            # Extract relationships between tables
+            relationships_df = model.relationships
             relationships = []
-            # Note: Implementation depends on pbixray API
+            
+            for _, rel in relationships_df.iterrows():
+                relationship_info = {
+                    "from_table": rel.get("FromTableName", ""),
+                    "from_column": rel.get("FromColumnName", ""),
+                    "to_table": rel.get("ToTableName", ""),
+                    "to_column": rel.get("ToColumnName", ""),
+                    "cardinality": rel.get("Cardinality", ""),
+                    "cross_filter_direction": rel.get("CrossFilteringBehavior", ""),
+                    "is_active": rel.get("IsActive", True),
+                }
+                relationships.append(relationship_info)
+            
             return relationships
         except Exception as e:
             return [{"error": f"Failed to extract relationships: {str(e)}"}]
@@ -90,9 +126,20 @@ class PBIXParser:
     def _extract_measures(self, model: PBIXRay) -> List[Dict[str, Any]]:
         """Extract DAX measures."""
         try:
+            measures_df = model.dax_measures
             measures = []
-            # Extract DAX measures
-            # Note: Implementation depends on pbixray API
+            
+            for _, measure in measures_df.iterrows():
+                measure_info = {
+                    "name": measure.get("Name", ""),
+                    "table": measure.get("TableName", ""),
+                    "expression": measure.get("Expression", ""),
+                    "description": measure.get("Description", ""),
+                    "display_folder": measure.get("DisplayFolder", ""),
+                    "format_string": "",  # Not available in current schema
+                }
+                measures.append(measure_info)
+            
             return measures
         except Exception as e:
             return [{"error": f"Failed to extract measures: {str(e)}"}]
@@ -100,9 +147,20 @@ class PBIXParser:
     def _extract_calculated_columns(self, model: PBIXRay) -> List[Dict[str, Any]]:
         """Extract calculated columns."""
         try:
+            columns_df = model.dax_columns
             calc_columns = []
-            # Extract calculated columns
-            # Note: Implementation depends on pbixray API
+            
+            for _, column in columns_df.iterrows():
+                column_info = {
+                    "name": column.get("ColumnName", ""),
+                    "table": column.get("TableName", ""),
+                    "expression": column.get("Expression", ""),
+                    "description": column.get("Description", ""),
+                    "data_type": column.get("DataType", ""),
+                    "display_folder": column.get("DisplayFolder", ""),
+                }
+                calc_columns.append(column_info)
+            
             return calc_columns
         except Exception as e:
             return [{"error": f"Failed to extract calculated columns: {str(e)}"}]
