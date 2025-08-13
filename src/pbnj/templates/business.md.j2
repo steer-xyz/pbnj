@@ -112,7 +112,7 @@ With this data model, you can create:
 ## 🚦 Data Quality & Reliability
 
 ### Model Complexity Assessment
-{% set complexity_score = business_data.insights.complexity_score | default(0) %}
+{% set complexity_score = business_data.key_insights.complexity_score | default(0) %}
 {% if complexity_score > 50 %}
 **High Complexity**: This is a sophisticated data model with advanced calculations
 - Requires experienced Power BI users for modifications

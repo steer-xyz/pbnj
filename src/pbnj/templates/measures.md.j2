@@ -57,24 +57,18 @@ This measure is used by:
 ## 🎯 Measure Categories
 
 ### Key Performance Indicators
-{% set kpi_measures = measures | selectattr("name", "match", ".*KPI.*|.*Total.*|.*Sum.*|.*Count.*") | list %}
-{% if kpi_measures %}
-{% for measure in kpi_measures -%}
+{% for measure in measures -%}
+{% if "KPI" in measure.name or "Total" in measure.name or "Sum" in measure.name or "Count" in measure.name -%}
 - **{{ measure.name }}**: {{ measure.description | default("Performance metric") }}
+{% endif -%}
 {% endfor %}
-{% else %}
-*No obvious KPI measures identified*
-{% endif %}
 
 ### Calculated Ratios
-{% set ratio_measures = measures | selectattr("name", "match", ".*Ratio.*|.*Rate.*|.*Percent.*|.*%.*") | list %}
-{% if ratio_measures %}
-{% for measure in ratio_measures -%}
+{% for measure in measures -%}
+{% if "Ratio" in measure.name or "Rate" in measure.name or "Percent" in measure.name or "%" in measure.name -%}
 - **{{ measure.name }}**: {{ measure.description | default("Calculated ratio") }}
+{% endif -%}
 {% endfor %}
-{% else %}
-*No ratio measures identified*  
-{% endif %}
 
 ## 📈 DAX Patterns Analysis
 
@@ -97,11 +91,15 @@ This measure is used by:
 {% endif %}
 
 ### Complexity Assessment
-{% set complex_measures = measures | selectattr("expression", "match", ".*(CALCULATE|SUMX|FILTER).*") | list %}
-{% set simple_measures = measures | length - complex_measures | length %}
+{% set complex_count = 0 %}
+{% for measure in measures -%}
+{% if measure.expression and ("CALCULATE" in measure.expression or "SUMX" in measure.expression or "FILTER" in measure.expression) -%}
+{% set complex_count = complex_count + 1 %}
+{% endif -%}
+{% endfor %}
 
-- **Simple Measures**: {{ simple_measures }} (basic aggregations)
-- **Complex Measures**: {{ complex_measures | length }} (advanced DAX)
+- **Simple Measures**: {{ measures | length - complex_count }} (basic aggregations)  
+- **Complex Measures**: {{ complex_count }} (advanced DAX)
 
 {% else %}
 ## ⚠️ No Measures Found

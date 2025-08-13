@@ -93,6 +93,8 @@ class DocumentationGenerator:
             tables=self.metadata.get("tables", []),
         )
         
+        # Ensure docs directory exists
+        self.docs_dir.mkdir(parents=True, exist_ok=True)
         tables_path = self.docs_dir / "tables.md"
         tables_path.write_text(content, encoding="utf-8")
     
@@ -104,6 +106,8 @@ class DocumentationGenerator:
             measures=self.metadata.get("measures", []),
         )
         
+        # Ensure docs directory exists
+        self.docs_dir.mkdir(parents=True, exist_ok=True)
         measures_path = self.docs_dir / "measures.md"
         measures_path.write_text(content, encoding="utf-8")
     
@@ -115,6 +119,8 @@ class DocumentationGenerator:
             power_query=self.metadata.get("power_query", {}),
         )
         
+        # Ensure docs directory exists
+        self.docs_dir.mkdir(parents=True, exist_ok=True)
         pq_path = self.docs_dir / "power_query.md"
         pq_path.write_text(content, encoding="utf-8")
     
@@ -126,6 +132,8 @@ class DocumentationGenerator:
             relationships=self.metadata.get("relationships", []),
         )
         
+        # Ensure docs directory exists
+        self.docs_dir.mkdir(parents=True, exist_ok=True)
         rel_path = self.docs_dir / "relationships.md"
         rel_path.write_text(content, encoding="utf-8")
     
@@ -141,6 +149,8 @@ class DocumentationGenerator:
             insights=insights,
         )
         
+        # Ensure docs directory exists
+        self.docs_dir.mkdir(parents=True, exist_ok=True)
         summary_path = self.docs_dir / "summary.md"
         summary_path.write_text(content, encoding="utf-8")
     
@@ -152,6 +162,8 @@ class DocumentationGenerator:
             metadata=self.metadata,
         )
         
+        # Ensure docs directory exists
+        self.docs_dir.mkdir(parents=True, exist_ok=True)
         tech_path = self.docs_dir / "technical.md"
         tech_path.write_text(content, encoding="utf-8")
     
@@ -167,6 +179,8 @@ class DocumentationGenerator:
             business_data=business_data,
         )
         
+        # Ensure docs directory exists
+        self.docs_dir.mkdir(parents=True, exist_ok=True)
         business_path = self.docs_dir / "business.md"
         business_path.write_text(content, encoding="utf-8")
     
