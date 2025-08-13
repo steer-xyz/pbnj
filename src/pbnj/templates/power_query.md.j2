@@ -1,0 +1,187 @@
+# ⚡ Power Query
+
+This document details the data transformation and loading processes implemented in Power Query (M language).
+
+{% if power_query.queries %}
+## Query Summary
+
+| Query | Steps | Description |
+|-------|-------|-------------|
+{% for query in power_query.queries -%}
+| {{ query.name }} | {{ query.steps | length }} | {{ query.description | default("Data transformation query") }} |
+{% endfor %}
+
+---
+
+## Detailed Query Information
+
+{% for query in power_query.queries %}
+### {{ query.name }}
+
+{% if query.description %}
+**Purpose**: {{ query.description }}
+{% endif %}
+
+#### Transformation Steps
+{% if query.steps %}
+{% for step in query.steps -%}
+{{ loop.index }}. `{{ step }}`
+{% endfor %}
+{% else %}
+*No detailed steps available*
+{% endif %}
+
+#### Complete M Code
+```m
+{{ query.code | default("Code not available") }}
+```
+
+{% if not loop.last %}
+---
+{% endif %}
+
+{% endfor %}
+
+{% endif %}
+
+{% if power_query.parameters %}
+## Parameters
+
+| Parameter | Value | Description |
+|-----------|-------|-------------|
+{% for param in power_query.parameters -%}
+| {{ param.name }} | {{ param.value }} | {{ param.description | default("Query parameter") }} |
+{% endfor %}
+
+{% endif %}
+
+{% if power_query.functions %}
+## Custom Functions
+
+{% for func in power_query.functions -%}
+### {{ func.name }}
+**Purpose**: {{ func.description | default("Custom function") }}
+
+```m
+{{ func.code }}
+```
+{% endfor %}
+
+{% endif %}
+
+{% if power_query.raw_code %}
+## Complete Power Query Code
+
+<details>
+<summary>Click to expand full M code</summary>
+
+```m
+{{ power_query.raw_code }}
+```
+
+</details>
+
+{% endif %}
+
+## 🔍 Data Flow Analysis
+
+### Data Sources Identified
+{% set sources = [] %}
+{% if power_query.raw_code %}
+  {% set code_upper = power_query.raw_code | upper %}
+  {% if "EXCEL.WORKBOOK" in code_upper %}
+    {% set _ = sources.append("Excel Workbook") %}
+  {% endif %}
+  {% if "SQL.DATABASE" in code_upper %}
+    {% set _ = sources.append("SQL Server Database") %}
+  {% endif %}
+  {% if "WEB.CONTENTS" in code_upper %}
+    {% set _ = sources.append("Web API/URL") %}
+  {% endif %}
+  {% if "SHAREPOINT" in code_upper %}
+    {% set _ = sources.append("SharePoint") %}
+  {% endif %}
+  {% if "CSV.DOCUMENT" in code_upper %}
+    {% set _ = sources.append("CSV File") %}
+  {% endif %}
+  {% if "JSON.DOCUMENT" in code_upper %}
+    {% set _ = sources.append("JSON Data") %}
+  {% endif %}
+{% endif %}
+
+{% if sources %}
+{% for source in sources -%}
+- {{ source }}
+{% endfor %}
+{% else %}
+*Data sources could not be automatically identified*
+{% endif %}
+
+### Common Transformations
+{% if power_query.raw_code %}
+  {% set code_upper = power_query.raw_code | upper %}
+  {% set transformations = [] %}
+  {% if "TABLE.REMOVECOLLUMNS" in code_upper %}
+    {% set _ = transformations.append("Column removal") %}
+  {% endif %}
+  {% if "TABLE.RENAMECOLUMNS" in code_upper %}
+    {% set _ = transformations.append("Column renaming") %}
+  {% endif %}
+  {% if "TABLE.TRANSFORMCOLUMNS" in code_upper %}
+    {% set _ = transformations.append("Data type changes") %}
+  {% endif %}
+  {% if "TABLE.ADDCOLUMN" in code_upper %}
+    {% set _ = transformations.append("Custom column creation") %}
+  {% endif %}
+  {% if "TABLE.GROUP" in code_upper %}
+    {% set _ = transformations.append("Data grouping/aggregation") %}
+  {% endif %}
+  {% if "TABLE.JOIN" in code_upper %}
+    {% set _ = transformations.append("Table joins") %}
+  {% endif %}
+  {% if "TABLE.PIVOT" in code_upper %}
+    {% set _ = transformations.append("Pivot operations") %}
+  {% endif %}
+  {% if "TABLE.UNPIVOT" in code_upper %}
+    {% set _ = transformations.append("Unpivot operations") %}
+  {% endif %}
+
+  {% if transformations %}
+{% for transform in transformations -%}
+- {{ transform }}
+{% endfor %}
+  {% else %}
+*No specific transformations identified*
+  {% endif %}
+{% endif %}
+
+## 📊 Performance Considerations
+
+### Optimization Tips
+- **Query Folding**: Check if transformations can be pushed to the source
+- **Data Types**: Ensure appropriate data types are set early
+- **Filtering**: Apply filters as early as possible in the transformation chain
+- **Column Selection**: Remove unnecessary columns early to reduce memory usage
+
+### Potential Issues
+- Complex transformations may impact refresh performance
+- Multiple data sources may require careful connection management
+- Large datasets may benefit from incremental refresh
+
+## 💡 Usage Guidelines
+
+### For Developers
+- Review each query's transformation steps for optimization opportunities
+- Understand data source connections and authentication requirements
+- Consider error handling for robust data refresh processes
+- Document any custom functions for team knowledge sharing
+
+### For Business Users
+- Power Query handles the "Extract, Transform, Load" (ETL) process
+- Each query represents a data preparation workflow
+- Parameters allow for flexible data source configuration
+- Refresh schedules should align with source data update frequencies
+
+---
+
+*This documentation was generated automatically by PBNJ from your Power BI file.*

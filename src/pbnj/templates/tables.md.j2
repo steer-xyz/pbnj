@@ -1,0 +1,90 @@
+# 📋 Tables
+
+This document provides detailed information about all tables in the Power BI data model.
+
+## Table Summary
+
+| Table | Type | Hidden | Columns | Description |
+|-------|------|--------|---------|-------------|
+{% for table in tables -%}
+| {{ table.name }} | {{ table.type | default("Table") }} | {{ "Yes" if table.hidden else "No" }} | {{ table.columns | length }} | {{ table.description | truncate(50) }} |
+{% endfor %}
+
+---
+
+## Detailed Table Information
+
+{% for table in tables %}
+### {{ table.name }}
+
+{% if table.description %}
+**Description**: {{ table.description }}
+{% endif %}
+
+**Properties:**
+- **Type**: {{ table.type | default("Table") }}
+- **Hidden**: {{ "Yes" if table.hidden else "No" }}
+- **Column Count**: {{ table.columns | length }}
+
+{% if table.columns %}
+#### Columns
+
+| Column | Type | Description |
+|--------|------|-------------|
+{% for column in table.columns -%}
+| {{ column.name | default("Unknown") }} | {{ column.type | default("Unknown") }} | {{ column.description | default("No description") }} |
+{% endfor %}
+{% else %}
+*Column information not available*
+{% endif %}
+
+{% if not loop.last %}
+---
+{% endif %}
+
+{% endfor %}
+
+## 🔍 Analysis Notes
+
+### Data Volume Insights
+{% set total_tables = tables | length %}
+{% set hidden_tables = tables | selectattr("hidden") | list | length %}
+{% set visible_tables = total_tables - hidden_tables %}
+
+- **Total Tables**: {{ total_tables }}
+- **Visible Tables**: {{ visible_tables }}
+- **Hidden Tables**: {{ hidden_tables }}
+
+### Table Categories
+{% set fact_tables = tables | selectattr("type", "equalto", "Fact") | list %}
+{% set dimension_tables = tables | selectattr("type", "equalto", "Dimension") | list %}
+
+{% if fact_tables %}
+#### Fact Tables ({{ fact_tables | length }})
+{% for table in fact_tables -%}
+- **{{ table.name }}**: {{ table.description | default("No description") }}
+{% endfor %}
+{% endif %}
+
+{% if dimension_tables %}
+#### Dimension Tables ({{ dimension_tables | length }})
+{% for table in dimension_tables -%}
+- **{{ table.name }}**: {{ table.description | default("No description") }}
+{% endfor %}
+{% endif %}
+
+## 💡 Usage Tips
+
+### For Developers
+- Review hidden tables - they may contain important calculated tables
+- Pay attention to table types for proper relationship modeling
+- Consider column data types when writing DAX
+
+### For Business Users
+- Focus on visible tables as they represent your main data entities
+- Table descriptions provide context for business understanding
+- Column names often reflect business terminology
+
+---
+
+*This documentation was generated automatically by PBNJ from your Power BI file.*

@@ -1,0 +1,132 @@
+# 📊 Measures
+
+This document contains all DAX measures and their formulas from the Power BI data model.
+
+{% if measures %}
+## Measures Summary
+
+| Measure | Table | Description |
+|---------|-------|-------------|
+{% for measure in measures -%}
+| {{ measure.name | default("Unknown") }} | {{ measure.table | default("Unknown") }} | {{ measure.description | truncate(50) | default("No description") }} |
+{% endfor %}
+
+---
+
+## Detailed Measure Definitions
+
+{% for measure in measures %}
+### {{ measure.name | default("Unknown Measure") }}
+
+{% if measure.description %}
+**Description**: {{ measure.description }}
+{% endif %}
+
+**Properties:**
+- **Table**: {{ measure.table | default("Unknown") }}
+- **Data Type**: {{ measure.data_type | default("Unknown") }}
+- **Format**: {{ measure.format | default("Auto") }}
+
+#### DAX Formula
+```dax
+{{ measure.expression | default("Formula not available") }}
+```
+
+{% if measure.dependencies %}
+#### Dependencies
+This measure depends on:
+{% for dep in measure.dependencies -%}
+- {{ dep }}
+{% endfor %}
+{% endif %}
+
+{% if measure.used_by %}
+#### Used By
+This measure is used by:
+{% for usage in measure.used_by -%}
+- {{ usage }}
+{% endfor %}
+{% endif %}
+
+{% if not loop.last %}
+---
+{% endif %}
+
+{% endfor %}
+
+## 🎯 Measure Categories
+
+### Key Performance Indicators
+{% set kpi_measures = measures | selectattr("name", "match", ".*KPI.*|.*Total.*|.*Sum.*|.*Count.*") | list %}
+{% if kpi_measures %}
+{% for measure in kpi_measures -%}
+- **{{ measure.name }}**: {{ measure.description | default("Performance metric") }}
+{% endfor %}
+{% else %}
+*No obvious KPI measures identified*
+{% endif %}
+
+### Calculated Ratios
+{% set ratio_measures = measures | selectattr("name", "match", ".*Ratio.*|.*Rate.*|.*Percent.*|.*%.*") | list %}
+{% if ratio_measures %}
+{% for measure in ratio_measures -%}
+- **{{ measure.name }}**: {{ measure.description | default("Calculated ratio") }}
+{% endfor %}
+{% else %}
+*No ratio measures identified*  
+{% endif %}
+
+## 📈 DAX Patterns Analysis
+
+### Common Functions Used
+{% set all_formulas = measures | map(attribute="expression") | join(" ") | upper %}
+{% if "SUM(" in all_formulas %}
+- **SUM()**: Used for aggregating numerical values
+{% endif %}
+{% if "CALCULATE(" in all_formulas %}
+- **CALCULATE()**: Used for filtered calculations
+{% endif %}
+{% if "SUMX(" in all_formulas %}
+- **SUMX()**: Used for row-by-row calculations
+{% endif %}
+{% if "FILTER(" in all_formulas %}
+- **FILTER()**: Used for applying filters
+{% endif %}
+{% if "RELATED(" in all_formulas %}
+- **RELATED()**: Used for accessing related table data
+{% endif %}
+
+### Complexity Assessment
+{% set complex_measures = measures | selectattr("expression", "match", ".*(CALCULATE|SUMX|FILTER).*") | list %}
+{% set simple_measures = measures | length - complex_measures | length %}
+
+- **Simple Measures**: {{ simple_measures }} (basic aggregations)
+- **Complex Measures**: {{ complex_measures | length }} (advanced DAX)
+
+{% else %}
+## ⚠️ No Measures Found
+
+This Power BI file doesn't appear to contain any custom DAX measures, or they couldn't be extracted. This might indicate:
+
+- The file primarily uses implicit measures (auto-generated)
+- Measures are defined in calculated columns instead
+- The extraction process needs refinement for this specific file
+
+{% endif %}
+
+## 💡 Best Practices
+
+### For DAX Development
+- Use CALCULATE() for most filtered aggregations
+- Consider performance implications of complex measures
+- Document business logic in measure descriptions
+- Use meaningful measure names that reflect business terminology
+
+### For Business Users
+- Measures represent the calculated metrics in your reports
+- Each measure follows a specific business rule encoded in DAX
+- Measure names should be intuitive for report consumers
+
+---
+
+*This documentation was generated automatically by PBNJ from your Power BI file.*

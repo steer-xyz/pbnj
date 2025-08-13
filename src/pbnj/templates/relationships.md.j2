@@ -1,0 +1,173 @@
+# 🔗 Relationships
+
+This document describes the data model relationships that connect tables in the Power BI semantic model.
+
+{% if relationships %}
+## Relationship Summary
+
+| From Table | To Table | Cardinality | Direction | Active |
+|-------------|----------|-------------|-----------|---------|
+{% for rel in relationships -%}
+| {{ rel.from_table | default("Unknown") }} | {{ rel.to_table | default("Unknown") }} | {{ rel.cardinality | default("Unknown") }} | {{ rel.cross_filter_direction | default("Single") }} | {{ "Yes" if rel.is_active else "No" }} |
+{% endfor %}
+
+---
+
+## Detailed Relationship Information
+
+{% for rel in relationships %}
+### {{ rel.from_table | default("Unknown") }} → {{ rel.to_table | default("Unknown") }}
+
+**Connection Details:**
+- **From Column**: {{ rel.from_column | default("Unknown") }}
+- **To Column**: {{ rel.to_column | default("Unknown") }}
+- **Cardinality**: {{ rel.cardinality | default("Unknown") }}
+- **Cross Filter Direction**: {{ rel.cross_filter_direction | default("Single") }}
+- **Active**: {{ "Yes" if rel.is_active else "No" }}
+
+{% if rel.description %}
+**Description**: {{ rel.description }}
+{% endif %}
+
+**Business Impact:**
+{% if rel.cardinality == "One-to-Many" %}
+- This is a typical dimension-to-fact relationship
+- Filters flow from {{ rel.to_table }} to {{ rel.from_table }}
+{% elif rel.cardinality == "Many-to-Many" %}
+- This is a complex many-to-many relationship
+- May impact performance and require careful DAX considerations
+{% elif rel.cardinality == "One-to-One" %}
+- This indicates two tables with matching unique identifiers
+- Consider if tables could be merged for simplification
+{% endif %}
+
+{% if not loop.last %}
+---
+{% endif %}
+
+{% endfor %}
+
+## 🏗️ Data Model Structure
+
+### Star Schema Analysis
+{% set fact_tables = relationships | map(attribute="from_table") | unique | list %}
+{% set dimension_tables = relationships | map(attribute="to_table") | unique | list %}
+{% set all_tables = (fact_tables + dimension_tables) | unique | list %}
+
+{% if fact_tables and dimension_tables %}
+#### Potential Fact Tables
+{% for table in fact_tables -%}
+- **{{ table }}** ({{ relationships | selectattr("from_table", "equalto", table) | list | length }} relationships)
+{% endfor %}
+
+#### Dimension Tables  
+{% for table in dimension_tables -%}
+- **{{ table }}** (provides lookup/filter context)
+{% endfor %}
+{% endif %}
+
+### Relationship Types Distribution
+{% set one_to_many = relationships | selectattr("cardinality", "equalto", "One-to-Many") | list | length %}
+{% set many_to_many = relationships | selectattr("cardinality", "equalto", "Many-to-Many") | list | length %}
+{% set one_to_one = relationships | selectattr("cardinality", "equalto", "One-to-One") | list | length %}
+
+- **One-to-Many**: {{ one_to_many }} (standard dimension relationships)
+- **Many-to-Many**: {{ many_to_many }} (complex relationships)
+- **One-to-One**: {{ one_to_one }} (unique identifier relationships)
+
+### Cross-Filter Direction
+{% set single_direction = relationships | selectattr("cross_filter_direction", "equalto", "Single") | list | length %}
+{% set both_direction = relationships | selectattr("cross_filter_direction", "equalto", "Both") | list | length %}
+
+- **Single Direction**: {{ single_direction }} (standard filtering)
+- **Both Directions**: {{ both_direction }} (bidirectional filtering)
+
+{% if both_direction > 0 %}
+⚠️ **Note**: Bidirectional relationships can impact performance and create ambiguous filter contexts.
+{% endif %}
+
+## 🎯 Model Quality Assessment
+
+### Strengths
+{% set active_relationships = relationships | selectattr("is_active") | list | length %}
+{% set total_relationships = relationships | length %}
+- {{ active_relationships }}/{{ total_relationships }} relationships are active
+{% if one_to_many > (many_to_many + one_to_one) %}
+- Primarily uses standard one-to-many relationships
+{% endif %}
+{% if single_direction > both_direction %}
+- Mostly uses single-direction filtering (good for performance)
+{% endif %}
+
+### Potential Improvements
+{% if many_to_many > 0 %}
+- Consider if any many-to-many relationships can be simplified
+{% endif %}
+{% if both_direction > one_to_many %}
+- Review bidirectional relationships for necessity
+{% endif %}
+{% if (total_relationships - active_relationships) > 0 %}
+- {{ total_relationships - active_relationships }} inactive relationships may indicate model complexity
+{% endif %}
+
+{% else %}
+## ⚠️ No Relationships Found
+
+This Power BI file doesn't appear to contain explicit relationships, which might indicate:
+
+- Single table model (all data in one table)
+- Relationships defined through DAX instead of model relationships
+- Extraction process needs refinement for this specific file
+- File contains disconnected tables
+
+**Recommendations:**
+- Review if table relationships should be established
+- Consider normalizing data if everything is in one large table
+- Check for implicit relationships that could be made explicit
+
+{% endif %}
+
+## 📐 Relationship Diagram
+
+```
+{% if relationships %}
+{% set processed_tables = [] %}
+{% for rel in relationships %}
+{% if rel.from_table not in processed_tables %}
+{{ rel.from_table }}
+{% for connection in relationships %}
+{% if connection.from_table == rel.from_table %}
+  ├── {{ connection.cardinality }} → {{ connection.to_table }}
+{% endif %}
+{% endfor %}
+{% set _ = processed_tables.append(rel.from_table) %}
+{% endif %}
+{% endfor %}
+{% else %}
+[No relationships to diagram]
+{% endif %}
+```
+
+## 💡 Best Practices
+
+### For Data Modelers
+- Prefer star schema design with clear fact and dimension tables
+- Use one-to-many relationships where possible
+- Minimize many-to-many relationships
+- Consider performance impact of bidirectional filtering
+- Keep inactive relationships only when necessary for alternative relationship paths
+
+### For Report Developers
+- Understand how relationships affect filter context in DAX
+- Be aware of active vs inactive relationships when writing measures
+- Consider relationship direction when designing visuals
+- Test filtering behavior across related tables
+
+### For Business Users
+- Relationships determine how data filtering works across visuals
+- Connected tables allow for interactive filtering in reports
+- Relationship quality directly impacts report accuracy and performance
+
+---
+
+*This documentation was generated automatically by PBNJ from your Power BI file.*
