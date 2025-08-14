@@ -1,3 +1,5 @@
+# WORK IN PROGRESS
+
 # PBNJ - Power BI Documentation & Analysis Tool
 
 Transform .pbix files into readable, AI-friendly documentation to enable better collaboration and natural language workflows.
